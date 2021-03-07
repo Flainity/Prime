@@ -1,4 +1,4 @@
-![Prime Logo](https://i.imgur.com/wnMHMRr.png)
+![Prime Logo](https://i.imgur.com/AKPtrn4.png)
 # Terraria Prime
 
 Terraria Prime adds some useful things to the game. Development just started and new content is in my pipeline.
