@@ -1,0 +1,1 @@
+Prime is a basic mod mainly made for some personal playthroughs. Currently it only provides characters with a starter pickaxe and a starter hammer. More to come in the future.

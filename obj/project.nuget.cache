@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "ECMzmgvwckPj5O3x0HWLeC14BjFL2yp66OWE/5WH5VuYO9ULCMy29zIMxR2g3qSJdYBBpMETarDGGoHptMiduw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\flain\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\Prime\\Prime.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\flain\\.nuget\\packages\\tmodloader.codeassist\\0.1.1\\tmodloader.codeassist.0.1.1.nupkg.sha512"
+  ],
+  "logs": []
+}
