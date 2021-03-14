@@ -1,19 +1,22 @@
+using Prime.Utilities;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Prime.Items.Tools
+namespace Prime.Items.Weapons
 {
-	public class PrimeSword : ModItem
+	public class PrimeSword : PrimeItem
 	{
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("[Mythic] Prime Sword");
+			DisplayName.SetDefault("Prime Sword");
 			Tooltip.SetDefault("An awesome new sword");
 		}
 
-		public override void SetDefaults() 
+		public override void SetDefaults()
 		{
-			item.damage = 857;
+			weaponTypeId = PrimeWeaponTypeID.ShadowMonk;
+			item.damage = 20;
 			item.melee = true;
 			item.width = 40;
 			item.height = 40;
@@ -27,6 +30,12 @@ namespace Prime.Items.Tools
 			item.autoReuse = true;
 			item.expertOnly = true;
 			item.expert = true;
+		}
+
+		public override bool CanUseItem(Player player)
+		{
+			var primePlayer = player.GetPrimePlayer();
+			return (primePlayer.isMonkClass && primePlayer.isShadowMonk);
 		}
 
 		public override void AddRecipes() 

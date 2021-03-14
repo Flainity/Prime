@@ -16,6 +16,5 @@
   <ItemGroup>
     <Folder Include="Commands" />
     <Folder Include="Items\Accessories" />
-    <Folder Include="Items\NPCs" />
   </ItemGroup>
 </Project>
