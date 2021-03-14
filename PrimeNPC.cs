@@ -14,7 +14,7 @@ namespace Prime
     {
         public override void NPCLoot(NPC npc)
         {
-            NpcHelper.DropItemWithProbability(npc.getRect(), ModContent.ItemType<TimewarpTonic>(), 1, 5);
+            NpcHelper.DropItemWithProbability(npc.getRect(), ModContent.ItemType<TimewarpTonic>(), 1, 0.005);
             
             base.NPCLoot(npc);
         }

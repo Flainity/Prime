@@ -8,10 +8,10 @@ namespace Prime.Utilities
 {
     public static class NpcHelper
     {
-        public static int DropItemWithProbability(Rectangle rectangle, int itemId, int amount, int probability)
+        public static int DropItemWithProbability(Rectangle rectangle, int itemId, int amount, double probability)
         {
             var random = new Random();
-            return random.Next(0, 100) < probability ? Item.NewItem(rectangle, itemId, amount) : 0;
+            return random.NextDouble() < probability ? Item.NewItem(rectangle, itemId, amount) : 0;
         }
 
         /// <summary>

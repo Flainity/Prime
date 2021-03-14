@@ -29,8 +29,17 @@ namespace Prime.Items.Misc
 
         public override bool UseItem(Player player)
         {
-            Main.time = Main.time / (Main.dayTime ? 54000 : 32400) * (Main.dayTime ? 32400 : 54000);
-            Main.dayTime = !Main.dayTime;
+            if (Main.dayTime)
+            {
+                Main.dayTime = false;
+                Main.time = 0;
+            }
+            else
+            {
+                Main.dayTime = true;
+                Main.time = 0;
+            }
+
             if (Main.dayTime && ++Main.moonPhase >= 8)
                 Main.moonPhase = 0;
 
