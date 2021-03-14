@@ -1,14 +1,30 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Prime.Buffs;
+using Prime.Items.Misc;
 using Prime.Items.Potions;
 using Prime.Items.Tools;
+using Prime.Projectiles.Typeless;
+using Prime.Utilities;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace Prime.PriPlayer
 {
     public class PrimePlayer : ModPlayer
     {
+        public bool isMonkClass;
+        public bool isLightMonk;
+        public bool isShadowMonk;
+
+        public float monkLightDamageBoost = 1f;
+        public float monkShadowDamageBoost = 1f;
+
+        public static bool areThereAnyBosses = false;
+        public bool bossZen = false;
+        
         public override void SetupStartInventory(IList<Item> items, bool mediumcoreDeath)
         {
             var starterPickaxe = new Item();
@@ -22,6 +38,13 @@ namespace Prime.PriPlayer
             items.Add(starterHammer);
         }
 
+        public override void ResetEffects()
+        {
+            monkLightDamageBoost = 1f;
+            monkShadowDamageBoost = 1f;
+            bossZen = false;
+        }
+
         public override void OnMissingMana(Item item, int neededMana)
         {
             var manaPercentage = player.statManaMax2 * 0.2;
@@ -31,6 +54,25 @@ namespace Prime.PriPlayer
             if (!player.HasItem(ModContent.ItemType<MagicEssence>())) return;
 
             QuickManaHeal(powerStarId);
+        }
+
+        public override void PostUpdateMiscEffects()
+        {
+            PrimePlayerMiscEffects.PrimePostUpdateMiscEffects(player, mod);
+            var primePlayer = player.GetPrimePlayer();
+            /*if (player.whoAmI == Main.myPlayer && primePlayer.isLightMonk && player.ownedProjectileCounts[ModContent.ProjectileType<LightMonkAura>()] < 1)
+                Projectile.NewProjectile(player.Center, Vector2.Zero, ModContent.ProjectileType<LightMonkAura>(), 1, 0.0f, player.whoAmI);*/
+        }
+
+        public override void PreUpdate()
+        {
+            isMonkClass = HasItemFavorited(ModContent.ItemType<MonkBell>());
+
+            if (!isMonkClass) return;
+            if (isLightMonk == false && isShadowMonk == false) { isLightMonk = true; }
+
+            if (isLightMonk) { player.AddBuff(ModContent.BuffType<LightMonk>(), 2, false); }
+            else if (isShadowMonk) { player.AddBuff(ModContent.BuffType<DarkMonk>(), 2, false); }
         }
 
         private void QuickManaHeal(int itemId)
@@ -66,7 +108,20 @@ namespace Prime.PriPlayer
         {
             for (var index = 3; index < 8 + player.extraAccessorySlots; ++index)
             {
-                return player.armor[index].netID == itemId;
+                if (player.armor[index].netID == itemId) return true;
+            }
+
+            return false;
+        }
+
+        private bool HasItemFavorited(int itemId)
+        {
+            for (var index = 0; index < 58; index++)
+            {
+                if (player.inventory[index].netID == itemId)
+                {
+                    return player.inventory[index].favorited;
+                }
             }
 
             return false;

@@ -23,12 +23,19 @@ namespace Prime.Items.Tools
 
         public override void AddRecipes()
         {
-            var recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<CrimtanePrimePickaxe>(), 1);
-            recipe.AddIngredient(ItemID.HellstoneBar, 20);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            var crimsonRecipe = new ModRecipe(mod);
+            crimsonRecipe.AddIngredient(ModContent.ItemType<CrimtanePrimePickaxe>(), 1);
+            crimsonRecipe.AddIngredient(ItemID.HellstoneBar, 20);
+            crimsonRecipe.AddTile(TileID.Anvils);
+            crimsonRecipe.SetResult(this);
+            crimsonRecipe.AddRecipe();
+            
+            var corruptionRecipe = new ModRecipe(mod);
+            corruptionRecipe.AddIngredient(ModContent.ItemType<DemonitePrimePickaxe>(), 1);
+            corruptionRecipe.AddIngredient(ItemID.HellstoneBar, 20);
+            corruptionRecipe.AddTile(TileID.Anvils);
+            corruptionRecipe.SetResult(this);
+            corruptionRecipe.AddRecipe();
         }
 
         public override void MeleeEffects(Terraria.Player player, Rectangle hitbox)

@@ -11,7 +11,7 @@ namespace Prime.Items.Potions
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("This magical essence will be used automatically, when you run out of mana. It restores 75% of your maximum mana.");
+            Tooltip.SetDefault("This magical essence will be used automatically, when you run out of mana.\nIt restores 75% of your maximum mana.");
         }
 
         public override void SetDefaults()
