@@ -11,8 +11,8 @@ namespace Prime.Buffs.Debuff
         {
             DisplayName.SetDefault("Stuck in time");
             Description.SetDefault($"You are stuck in time!\nYou can reuse the Timewarp Tonic when you get out.");
-            Main.debuff[Type] = false;
-            canBeCleared = true;
+            Main.debuff[Type] = true;
+            canBeCleared = false;
         }
     }
 }
