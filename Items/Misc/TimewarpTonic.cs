@@ -1,4 +1,5 @@
 using System;
+using Prime.Buffs.Debuff;
 using Prime.Utilities;
 using Terraria;
 using Terraria.ID;
@@ -27,6 +28,11 @@ namespace Prime.Items.Misc
             item.consumable = true;
         }
 
+        public override bool CanUseItem(Player player)
+        {
+            return !player.HasBuff(ModContent.BuffType<StuckInTime>());
+        }
+
         public override bool UseItem(Player player)
         {
             if (Main.dayTime)
@@ -42,6 +48,8 @@ namespace Prime.Items.Misc
 
             if (Main.dayTime && ++Main.moonPhase >= 8)
                 Main.moonPhase = 0;
+            
+            player.AddBuff(ModContent.BuffType<StuckInTime>(), 45000, false);
 
             return true;
         }
